@@ -8,3 +8,19 @@ before_install :
 
 script :
   - docker run -e CI=true 7682080176/docker-kubernetes-react-poc npm run test -- --coverage
+
+deploy :
+  provider : elasticbeanstalk
+  region : "ap-south-1"
+  app : "docker-react-poc"
+  env : "Dockerreactpoc-env"
+  bukcet_name : "elasticbeanstalk-ap-south-1-179250594100"
+  bukcket_path : "docker-react-poc"
+  on:
+    branch : master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
+  
+
+
